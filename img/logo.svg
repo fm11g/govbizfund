@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248 48" role="img" aria-label="오늘의 정책자금">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#20d3be"/><stop offset="1" stop-color="#0b7a70"/></linearGradient></defs>
+  <rect x="2" y="4" width="40" height="40" rx="12" fill="url(#g)"/>
+  <path d="M10 31h24" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <path d="M14.5 31a7.5 7.5 0 0 1 15 0" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <path d="M22 14.5v3M13.6 18l2 2M30.4 18l-2 2" stroke="#d9fff8" stroke-width="2.6" stroke-linecap="round"/>
+  <text x="52" y="27" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="21" font-weight="800" letter-spacing="-0.6" fill="#0b1220">오늘의 정책자금</text>
+  <text x="53" y="41" font-family="Pretendard, 'Noto Sans KR', sans-serif" font-size="8.6" font-weight="700" letter-spacing="2.2" fill="#0fb3a2">TODAY POLICY FUND</text>
+</svg>

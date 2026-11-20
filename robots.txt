@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /complete.html
+Disallow: /partials/
+Disallow: /go.html
+Sitemap: https://todayfund.co.kr/sitemap.xml

@@ -1,0 +1,125 @@
+<!-- 게시글 상세(notice-번호.html) 하단 신청폼 — js/fund-form.js 가 [data-fund-form-mount] 자리에 불러옵니다. build 스크립트가 생성 -->
+
+<section id="fundForm" data-fund-form aria-label="무료 자금 진단 신청">
+  <style>
+  #fundForm{
+    --mint:#13b5a3;--mint-d:#0b7a70;--ink:#0b1220;--muted:#5b6678;--line:#e3e8ef;
+    position:relative;overflow:hidden;padding:clamp(72px,9vw,120px) 20px;background:linear-gradient(180deg,#f2fbf9 0%,#ffffff 100%);
+    container-type:inline-size;font-family:Pretendard,"Noto Sans KR",sans-serif;color:var(--ink);
+  }
+  #fundForm .ff-bubble{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(19,181,163,.18),rgba(19,181,163,0))}
+  #fundForm .ff-bubble.b1{width:520px;height:520px;left:-180px;top:-140px}
+  #fundForm .ff-bubble.b2{width:420px;height:420px;right:-140px;bottom:-120px;animation:ffFloat 9s ease-in-out infinite}
+  @keyframes ffFloat{50%{transform:translate(-20px,-24px)}}
+  #fundForm .ff-wrap{position:relative;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);gap:clamp(28px,5cqi,64px);align-items:start}
+  #fundForm .ff-copy{position:sticky;top:120px}
+  #fundForm .ff-tag{display:inline-flex;padding:7px 14px;border-radius:999px;background:#fff;border:1px solid #c7f4ea;color:var(--mint-d);font-size:13.5px;font-weight:800}
+  #fundForm .ff-copy h2{margin:16px 0 14px;font-size:clamp(28px,3.6cqi,42px);line-height:1.28;font-weight:900;letter-spacing:-1px}
+  #fundForm .ff-copy h2 b{color:var(--mint)}
+  #fundForm .ff-copy > p{color:var(--muted);font-size:16.5px;line-height:1.7}
+  #fundForm .ff-chips{display:grid;gap:10px;margin-top:26px}
+  #fundForm .ff-chips li{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;background:#fff;border:1px solid var(--line);font-weight:700;font-size:15.5px;box-shadow:0 8px 20px -16px rgba(11,18,32,.25)}
+  #fundForm .ff-chips li span{flex:0 0 30px;height:30px;border-radius:9px;display:grid;place-items:center;background:#e4f8f4;color:var(--mint-d);font-size:14px;font-weight:900}
+  #fundForm .ff-card{background:#fff;border-radius:24px;padding:clamp(22px,3.4cqi,36px);box-shadow:0 30px 60px -30px rgba(11,18,32,.28),0 0 0 1px rgba(11,18,32,.05)}
+  #fundForm .ff-card h3{font-size:22px;font-weight:900;letter-spacing:-.4px}
+  #fundForm .ff-help{margin:6px 0 22px;color:#8a94a6;font-size:13.5px}
+  #fundForm .ff-help i,#fundForm label i{color:#e5484d;font-style:normal}
+  #fundForm .ff-help{margin-bottom:10px}
+  #fundForm .ff-gate{margin:0 0 20px;padding:12px 14px;border-radius:12px;background:#fff5f5;border:1px solid #fbd5d5;color:#7a271a;font-size:13.5px;line-height:1.6}
+  #fundForm .ff-gate b{color:#d92d20}
+  #fundForm .ff-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+  #fundForm .ff-field.full{grid-column:1/-1}
+  #fundForm .ff-field label{display:block;margin-bottom:7px;font-size:14px;font-weight:700}
+  #fundForm .ff-field input:not([type=checkbox]),#fundForm .ff-field select,#fundForm .ff-field textarea{
+    width:100%;height:50px;padding:0 14px;border-radius:12px;border:1.5px solid var(--line);background:#fbfcfd;font-size:15.5px;outline:none;
+    transition:border-color .15s ease,background .15s ease,box-shadow .15s ease;-webkit-appearance:none;appearance:none}
+  #fundForm .ff-field textarea{height:96px;padding:12px 14px;resize:vertical;line-height:1.6}
+  #fundForm .ff-field input:not([type=checkbox]):focus,#fundForm .ff-field select:focus,#fundForm .ff-field textarea:focus{border-color:var(--mint);background:#fff;box-shadow:0 0 0 4px rgba(19,181,163,.12)}
+  #fundForm .ff-sel{position:relative}
+  #fundForm .ff-sel::after{content:"";position:absolute;right:16px;top:50%;width:8px;height:8px;border-right:2px solid #8a94a6;border-bottom:2px solid #8a94a6;transform:translateY(-70%) rotate(45deg);pointer-events:none}
+  #fundForm .ff-sel select:invalid{color:#98a2b3}
+  #fundForm .ff-sel option{color:var(--ink)}
+  #fundForm .ff-sel option:disabled{color:#c0c6d0}
+  #fundForm .ff-agree{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.55;color:#344054;font-weight:600}
+  #fundForm .ff-agree input{flex:0 0 20px;width:20px;height:20px;margin-top:1px;accent-color:var(--mint)}
+  #fundForm .ff-agree button{color:var(--mint-d);text-decoration:underline;font-weight:700;margin-left:4px}
+  #fundForm .ff-submit{width:100%;height:60px;margin-top:22px;border-radius:16px;background:#1b2230;color:#fff;font-size:17px;font-weight:800;letter-spacing:-.2px;transition:background .3s ease,transform .18s ease,box-shadow .3s ease}
+  #fundForm .ff-submit:disabled{cursor:default;opacity:.92}
+  #fundForm.is-ready .ff-submit{background:linear-gradient(160deg,#1fd0bb,#0b7a70);box-shadow:0 18px 34px -14px rgba(11,122,112,.75)}
+  #fundForm.is-ready .ff-submit:hover{transform:translateY(-1px)}
+  #fundForm .ff-note{min-height:20px;margin-top:10px;font-size:13.5px;text-align:center;color:var(--muted)}
+  #fundForm .ff-note.err{color:#d92d20;font-weight:700}
+  #fundForm .ff-terms{position:fixed;inset:0;z-index:1200;background:rgba(11,18,32,.55);display:flex;align-items:center;justify-content:center;padding:20px}
+  #fundForm .ff-terms[hidden]{display:none}
+  #fundForm .ff-sheet{width:min(560px,100%);max-height:82vh;overflow:auto;background:#fff;border-radius:20px;padding:28px}
+  #fundForm .ff-sheet h4{font-size:19px;font-weight:900;margin-bottom:14px}
+  #fundForm .ff-sheet dl{display:grid;grid-template-columns:110px 1fr;gap:10px 14px;font-size:14px;line-height:1.6}
+  #fundForm .ff-sheet dt{font-weight:800;color:#344054}
+  #fundForm .ff-sheet dd{color:#475467}
+  #fundForm .ff-sheet p{margin-top:14px;font-size:13px;color:#8a94a6;line-height:1.6}
+  #fundForm .ff-sheet button{margin-top:18px;width:100%;height:50px;border-radius:12px;background:var(--ink);color:#fff;font-weight:800}
+  @container (max-width:900px){
+    #fundForm .ff-wrap{grid-template-columns:1fr}
+    #fundForm .ff-copy{position:static}
+  }
+  @container (max-width:520px){
+    #fundForm .ff-grid{grid-template-columns:1fr}
+  }
+</style>
+  <span class="ff-bubble b1" aria-hidden="true"></span>
+  <span class="ff-bubble b2" aria-hidden="true"></span>
+  <div class="ff-wrap">
+    <div class="ff-copy">
+      <span class="ff-tag">연매출 4억 이상 사업자 전용</span>
+      <h2>이 소식, 우리 회사에도<br>해당될까요?<br><b>무료 자금 진단 신청</b></h2>
+      <p>연매출 4억 이상 사업자라면 8가지 항목만 체크하세요. 지금 신청 가능한 정책자금과 예상 한도를 전문가가 직접 분석해 연락드립니다.</p>
+      <ul class="ff-chips">
+        <li><span>01</span>연매출 4억 이상 사업자 대상 1:1 무료 상담</li>
+        <li><span>02</span>매출 규모에 맞춘 자금 · 한도 설계</li>
+        <li><span>03</span>접수 후 담당 전문가가 순차적으로 연락</li>
+      </ul>
+    </div>
+
+    <div class="ff-card">
+      <form novalidate>
+        <input type="hidden" name="reception_location" value="">
+        <h3>무료 자금 진단 신청서</h3>
+        <p class="ff-help"><i>*</i> 표시는 필수 입력 항목입니다.</p>
+        <p class="ff-gate"><b>연매출 4억 미만</b> 사업자는 신청이 불가합니다. 세금 체납 · 대출 연체 · 신용점수 700점 미만도 접수되지 않습니다.</p>
+        <div class="ff-grid">
+          <div class="ff-field"><label for="ff-name">성함 <i>*</i></label><input id="ff-name" name="name" type="text" placeholder="홍길동" maxlength="20" autocomplete="name"></div>
+          <div class="ff-field"><label for="ff-phone">연락처 <i>*</i></label><input id="ff-phone" name="phone" type="tel" inputmode="numeric" placeholder="01012345678" maxlength="13" autocomplete="tel"></div>
+          <div class="ff-field"><label for="ff-company">회사명 <i>*</i></label><input id="ff-company" name="company_name" type="text" placeholder="회사(상호)명" maxlength="40" autocomplete="organization"></div>
+          <div class="ff-field"><label for="ff-region">지역 <i>*</i></label><div class="ff-sel"><select id="ff-region" name="region" required><option value="" selected disabled>지역 선택</option><option>서울</option><option>경기</option><option>인천</option><option>부산</option><option>대구</option><option>광주</option><option>대전</option><option>울산</option><option>세종</option><option>강원</option><option>충북</option><option>충남</option><option>전북</option><option>전남</option><option>경북</option><option>경남</option><option>제주</option></select></div></div>
+          <div class="ff-field"><label for="ff-industry">업태 <i>*</i></label><div class="ff-sel"><select id="ff-industry" name="industry" required><option value="" selected disabled>업태 선택</option><option>제조업</option><option>도·소매업</option><option>정보통신업(IT)</option><option>건설업</option><option>서비스업</option><option>운수·물류업</option><option>음식·숙박업</option><option>기타</option></select></div></div>
+          <div class="ff-field"><label for="ff-biz_years">사업 연혁 <i>*</i></label><div class="ff-sel"><select id="ff-biz_years" name="biz_years" required><option value="" selected disabled>사업 연혁 선택</option><option>1년 미만</option><option>1년 ~ 3년</option><option>3년 ~ 7년</option><option>7년 이상</option></select></div></div>
+          <div class="ff-field"><label for="ff-annual_sales">연매출 <i>*</i></label><div class="ff-sel"><select id="ff-annual_sales" name="annual_sales" required><option value="" selected disabled>연매출 선택</option><option disabled>4억 미만 (신청 불가)</option><option>4억 ~ 10억</option><option>10억 ~ 30억</option><option>30억 ~ 50억</option><option>50억 이상</option></select></div></div>
+          <div class="ff-field"><label for="ff-credit_score">대표자 신용점수 <i>*</i></label><div class="ff-sel"><select id="ff-credit_score" name="credit_score" required><option value="" selected disabled>신용점수 선택</option><option>900점 이상</option><option>800점 ~ 899점</option><option>700점 ~ 799점</option><option disabled>700점 미만 (신청 불가)</option></select></div></div>
+          <div class="ff-field"><label for="ff-overdue">세금 체납·대출 연체 <i>*</i></label><div class="ff-sel"><select id="ff-overdue" name="overdue" required><option value="" selected disabled>연체·체납 여부 선택</option><option disabled>있음 (신청 불가)</option><option>없음</option></select></div></div>
+          <div class="ff-field"><label for="ff-fund_type">필요한 자금 <i>*</i></label><div class="ff-sel"><select id="ff-fund_type" name="fund_type" required><option value="" selected disabled>자금 종류 선택</option><option>운전자금</option><option>시설자금</option><option>수출자금</option><option>대환대출</option><option>창업·기술자금</option><option>잘 모르겠어요 (진단 요청)</option></select></div></div>
+          <div class="ff-field full"><label for="ff-call_time">통화 가능 시간 <i>*</i></label><div class="ff-sel"><select id="ff-call_time" name="call_time" required><option value="" selected disabled>통화 가능 시간 선택</option><option>언제나 통화 가능</option><option>오전 09:00 ~ 10:00</option><option>오전 10:00 ~ 11:00</option><option>오전 11:00 ~ 12:00</option><option>점심 12:00 ~ 13:00</option><option>오후 13:00 ~ 14:00</option><option>오후 14:00 ~ 15:00</option><option>오후 15:00 ~ 16:00</option><option>오후 16:00 ~ 17:00</option><option>오후 17:00 ~ 18:00</option></select></div></div>
+          <div class="ff-field full"><label for="ff-message">문의 사항</label><textarea id="ff-message" name="message" maxlength="1000" placeholder="필요한 금액, 사용 계획, 현재 대출 현황 등을 간단히 남겨 주시면 더 정확하게 안내해 드립니다."></textarea></div>
+          <div class="ff-field full">
+            <label class="ff-agree"><input type="checkbox" name="agree" checked><span>개인정보 수집·이용에 동의합니다. (필수)<button type="button" class="ff-terms-open">자세히 보기</button></span></label>
+          </div>
+        </div>
+        <button class="ff-submit" type="submit" disabled>성함을 입력해 주세요</button>
+        <p class="ff-note" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="ff-terms" hidden>
+    <div class="ff-sheet" role="dialog" aria-modal="true" aria-label="개인정보 수집·이용 동의">
+      <h4>개인정보 수집·이용 동의</h4>
+      <dl>
+        <dt>수집 항목</dt><dd>성함, 연락처, 회사명, 지역, 업태, 사업 연혁, 연매출, 신용점수 구간, 연체·체납 여부, 필요 자금, 통화 가능 시간, 문의 내용</dd>
+        <dt>이용 목적</dt><dd>정책자금 상담 및 진단 결과 안내, 상담 이력 관리</dd>
+        <dt>보유 기간</dt><dd>상담 완료 후 1년 (관계 법령에 따라 보존이 필요한 경우 해당 기간)</dd>
+      </dl>
+      <p>동의를 거부할 수 있으며, 거부 시 상담 신청이 제한됩니다. 자세한 내용은 <a href="./privacy.html" style="text-decoration:underline">개인정보처리방침</a>을 확인해 주세요.</p>
+      <button type="button" data-terms-close>확인</button>
+    </div>
+  </div>
+
+</section>

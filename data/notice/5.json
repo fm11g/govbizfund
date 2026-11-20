@@ -1,0 +1,27 @@
+{
+  "id": 5,
+  "board": "info",
+  "category": "신청 가이드",
+  "eventStart": null,
+  "eventEnd": null,
+  "slug": "notice-5",
+  "title": "정책자금 신청 전 꼭 준비해야 할 서류 체크리스트",
+  "excerpt": "정책자금은 서류 준비 수준에 따라 진행 속도가 크게 달라집니다. 상담 전에 아래 서류를 미리 챙겨 두면 진단과 신청이 훨씬 빨라집니다. 기본 서류 사업자등록증 최근 3개년 재무제표 (표준재무제표증명) 부가가치세 과세표준증명 국세 · 지방세 납세증명서 4대보험 가입자 명부 자금별 추가 서",
+  "date": "2026-11-16",
+  "thumb": "img/notice/202611/seed-documents-check.jpg",
+  "pinned": false,
+  "showOnMain": true,
+  "hidden": false,
+  "externalLink": null,
+  "openExternal": false,
+  "author": "관리자",
+  "createdAt": "2026-11-19T01:30:00.000Z",
+  "updatedAt": "2026-11-19T01:30:00.000Z",
+  "img": "./img/notice/202611/seed-documents-check.jpg",
+  "link": "./notice-5.html",
+  "content": "<p>정책자금은 서류 준비 수준에 따라 진행 속도가 크게 달라집니다. 상담 전에 아래 서류를 미리 챙겨 두면 진단과 신청이 훨씬 빨라집니다.</p>\n<h3>기본 서류</h3>\n<ul><li>사업자등록증</li><li>최근 3개년 재무제표 (표준재무제표증명)</li><li>부가가치세 과세표준증명</li><li>국세 · 지방세 납세증명서</li><li>4대보험 가입자 명부</li></ul>\n<h3>자금별 추가 서류</h3>\n<ul><li><strong>시설자금</strong> — 설비 견적서, 공장 매매 · 임대차 계약서</li><li><strong>창업 · 기술자금</strong> — 사업계획서, 특허 등 지식재산 증빙, 기업 인증서</li><li><strong>대환대출</strong> — 기존 대출 약정서, 부채 현황표</li></ul>\n<blockquote class=\"nv-quote-box\"><p><strong>체납 · 연체가 있다면 먼저 정리하세요.</strong> 세금 체납이나 금융기관 연체가 있으면 대부분의 정책자금 신청이 제한됩니다.</p></blockquote>",
+  "attachments": [],
+  "assets": [
+    "img/notice/202611/seed-documents-check.jpg"
+  ]
+}

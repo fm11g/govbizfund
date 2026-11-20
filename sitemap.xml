@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://todayfund.co.kr/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://todayfund.co.kr/about.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://todayfund.co.kr/ceo.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://todayfund.co.kr/vision.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://todayfund.co.kr/business.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://todayfund.co.kr/fund-operating.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://todayfund.co.kr/fund-facility.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://todayfund.co.kr/fund-export.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://todayfund.co.kr/fund-refinance.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://todayfund.co.kr/fund-startup.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://todayfund.co.kr/cases.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://todayfund.co.kr/contact.html</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://todayfund.co.kr/notice.html</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://todayfund.co.kr/fund-info.html</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://todayfund.co.kr/privacy.html</loc><changefreq>monthly</changefreq></url>
+  <!-- notice:start (관리자 페이지가 자동으로 관리하는 구간) -->
+  <url><loc>https://todayfund.co.kr/notice-1.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://todayfund.co.kr/notice-3.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://todayfund.co.kr/notice-2.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://todayfund.co.kr/notice-4.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://todayfund.co.kr/notice-5.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://todayfund.co.kr/notice-6.html</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://todayfund.co.kr/notice-7.html</loc><lastmod>2026-11-19</lastmod></url>
+  <!-- notice:end -->
+</urlset>
