@@ -10,16 +10,16 @@ window.TODAY_FUND = {
   /* 푸터 사업자 정보 — 실제 정보로 교체하세요 */
   company: {
     name: '오늘의 정책자금',
-    ceo: '대표자명',
-    bizNo: '000-00-00000',
+    ceo: '최지웅',
+    bizNo: '643-77-00532',
     address: '서울시 영등포구 선유로 53길 22 502호',
-    extra: ''                // 예) 경영컨설팅업 등록번호 등
+    extra: ''             
   },
 
   /* 상담 신청 저장 (Supabase) — anon(public) 키만 넣습니다. service_role 키는 절대 넣지 마세요. */
   supabase: {
-    url: 'https://YOUR-PROJECT.supabase.co',
-    anonKey: 'YOUR_SUPABASE_ANON_KEY',
+    url: 'https://raqnzvummwqygjsnngcz.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhcW56dnVtbXdxeWdqc25uZ2N6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxMDA2ODMsImV4cCI6MjExMDY3NjY4M30.owBQDWE5ZpwqjtYKQj16DRWVp4P2knuNiXyaY3WJ9r0',
     table: 'fund_requests'   // sql/05_policy_fund.sql 이 만드는 INSERT 전용 뷰
   },
 
