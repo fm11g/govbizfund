@@ -9,7 +9,7 @@ window.TODAY_FUND = {
 
   /* 푸터 사업자 정보 — 실제 정보로 교체하세요 */
   company: {
-    name: '오늘의 정책자금',
+    name: 'FLOS',
     ceo: '최지웅',
     bizNo: '643-77-00532',
     address: '서울시 영등포구 선유로 53길 22 502호',
