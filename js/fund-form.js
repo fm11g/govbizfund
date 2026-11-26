@@ -145,7 +145,6 @@
         headers: {
           'Content-Type': 'application/json',
           apikey: SB.anonKey,
-          Authorization: 'Bearer ' + SB.anonKey,
           Prefer: 'return=minimal'
         },
         body: JSON.stringify(payload)
