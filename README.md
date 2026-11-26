@@ -24,7 +24,7 @@
 - `supabase.url` · `supabase.anonKey` — 상담 폼 저장 (관리자 README 의 SQL 실행 후 **anon 키**만 입력)
 
 그 밖에 바꿀 곳
-- 도메인: 각 html 의 canonical/og 주소(`https://todayfund.co.kr`), `robots.txt`, `sitemap.xml`
+- 도메인: 각 html 의 canonical/og 주소(`https://todaypolicyfund.co.kr`), `robots.txt`, `sitemap.xml`
 - 광고 픽셀(GA4 · 메타 · 당근): 각 html `<head>` 의 주석 위치. 상담 폼이 `gtag`/`fbq`/`karrotPixel` 이 있으면 전환 이벤트를 보냅니다.
 - 자금 확보 사례(`cases.html` · 메인 `#successCases` · 자금 페이지 `#fundCases`), 승인 현황 티커(`#mainHero .mh-tk`), 실적 숫자(`#fundStats`)는 공개 전 실제 사례·수치로 확인하세요
 - 연매출 4억 미만 차단: 폼 선택지(비활성) + `js/fund-form.js` 의 `ALLOWED_SALES` + DB `fund_requests_insert` 3중으로 막습니다. 기준을 바꾸면 세 곳을 함께 고치세요.

@@ -362,3 +362,49 @@
 
   window.TodayFundSite = { esc: esc };
 })();
+
+/* =====================================================================
+   오늘의 이벤트 알림 (모든 페이지 · today.html 제외)
+   data/landings.json 의 가장 최근 진행 중 랜딩을 화면 왼쪽 아래에 카운트다운과 함께 띄웁니다.
+   마감 시각이 지나면 사라지고, [닫기]를 누르면 이번 방문 동안 다시 안 뜹니다.
+   ===================================================================== */
+(function () {
+  'use strict';
+  if (/today\.html$/.test(location.pathname) || !window.fetch) return;
+  var KEY = 'tf_evbar_closed';
+  try { if (sessionStorage.getItem(KEY)) return; } catch (e) {}
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  fetch('./data/landings.json?v=' + Math.floor(Date.now() / 6e4), { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : {}; }).catch(function () { return {}; })
+    .then(function (j) {
+      var items = (j && j.items) || {}, now = Date.now();
+      var l = Object.keys(items).map(function (k) { return items[k]; })
+        .filter(function (x) { var e = x.deadline || x.expiresAt; return x && !x.hidden && x.deadline && (!e || Date.parse(e) > now); })
+        .sort(function (a, b) { return Date.parse(a.deadline) - Date.parse(b.deadline); })[0];
+      if (!l) return;
+      var st = document.createElement('style');
+      st.textContent = '#evBar{position:fixed;left:22px;bottom:28px;z-index:790;display:flex;align-items:center;gap:12px;max-width:min(440px,calc(100vw - 120px));padding:12px 12px 12px 16px;border-radius:18px;background:linear-gradient(135deg,#0b7a70,#13b5a3);color:#fff;box-shadow:0 20px 44px -18px rgba(11,122,112,.65);font-family:Pretendard,"Noto Sans KR",sans-serif;animation:evIn .5s ease both}' +
+        '#evBar a{display:grid;gap:3px;color:#fff;text-decoration:none;min-width:0}' +
+        '#evBar em{font-style:normal;font-size:12px;font-weight:800;color:#bff5ec;letter-spacing:.04em}' +
+        '#evBar strong{font-size:15px;font-weight:800;line-height:1.35;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}' +
+        '#evBar .ev-cd{flex:0 0 auto;font-weight:900;font-size:15px;font-variant-numeric:tabular-nums;background:#fff;color:#0b7a70;padding:8px 10px;border-radius:12px}' +
+        '#evBar button{flex:0 0 auto;width:28px;height:28px;border:0;border-radius:50%;background:rgba(255,255,255,.2);color:#fff;font-size:16px;cursor:pointer}' +
+        '@keyframes evIn{from{opacity:0;transform:translateY(16px)}}' +
+        '@media (max-width:760px){#evBar{left:10px;right:10px;max-width:none;bottom:calc(84px + env(safe-area-inset-bottom))}}' +
+        '@media (prefers-reduced-motion:reduce){#evBar{animation:none}}';
+      document.head.appendChild(st);
+      var bar = document.createElement('aside');
+      bar.id = 'evBar'; bar.setAttribute('aria-label', '진행 중인 이벤트');
+      bar.innerHTML = '<a href="./today.html?c=' + encodeURIComponent(l.code) + '"><em>진행 중인 이벤트 · 마감까지</em><strong>' + esc(l.title || l.headline) + '</strong></a><span class="ev-cd" aria-live="off"></span><button type="button" aria-label="닫기">×</button>';
+      document.body.appendChild(bar);
+      var cd = bar.querySelector('.ev-cd'), end = Date.parse(l.deadline);
+      function tick() {
+        var ms = end - Date.now();
+        if (ms <= 0) { clearInterval(t); bar.remove(); return; }
+        var s = Math.floor(ms / 1000), d = Math.floor(s / 86400);
+        cd.textContent = (d ? 'D-' + d + ' ' : '') + ('0' + Math.floor(s % 86400 / 3600)).slice(-2) + ':' + ('0' + Math.floor(s % 3600 / 60)).slice(-2) + ':' + ('0' + s % 60).slice(-2);
+      }
+      var t = setInterval(tick, 1000); tick();
+      bar.querySelector('button').addEventListener('click', function () { clearInterval(t); bar.remove(); try { sessionStorage.setItem(KEY, '1'); } catch (e) {} });
+    });
+})();

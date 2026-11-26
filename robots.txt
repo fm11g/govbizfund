@@ -3,4 +3,4 @@ Allow: /
 Disallow: /complete.html
 Disallow: /partials/
 Disallow: /go.html
-Sitemap: https://todayfund.co.kr/sitemap.xml
+Sitemap: https://todaypolicyfund.co.kr/sitemap.xml

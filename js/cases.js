@@ -169,6 +169,29 @@
     });
   }
 
+  /* 오늘의 랜딩: 랜딩 내용(자금 종류 · 사례 순서)을 받은 뒤 그 자금의 사례만 그립니다 */
+  window.TF_CASES = {
+    renderFor: function (root, fund, order) {
+      if (!root) return;
+      load().then(function (items) {
+        var pick = items.filter(function (c) { return !fund || c.fund === fund; });
+        if (order && order.length) {
+          var byId = {}; items.forEach(function (c) { byId[c.id] = c; });
+          var first = order.map(function (id) { return byId[id]; }).filter(Boolean);
+          pick = first.concat(pick.filter(function (c) { return order.indexOf(c.id) < 0; }));
+        }
+        pick = pick.slice(0, 3);
+        if (!pick.length) { root.hidden = true; return; }
+        var grid = root.querySelector('.fc-grid');
+        grid.style.setProperty('--cols', String(Math.min(pick.length, 3)));
+        grid.innerHTML = pick.map(fullCard).join('');
+        var more = root.querySelector('.fc-more'); if (more && fund) more.href = './cases.html?fund=' + fund;
+        var cnt = root.querySelector('[data-fund-count]'); if (cnt) cnt.textContent = '';
+        var n = root.querySelector('[data-case-note]'); if (n) n.textContent = NOTE;
+      });
+    }
+  };
+
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();
